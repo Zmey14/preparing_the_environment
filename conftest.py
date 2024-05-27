@@ -5,6 +5,7 @@ import pytest
 
 
 def pytest_addoption(parser):
+    """options for command line"""
     parser.addoption("--language", action="store", default="en",
                      help="input language")
 
@@ -12,6 +13,7 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope="function")
 def browser(request):
+    """general fixture for tests"""
     user_language = request.config.getoption("language")
     options = Options()
     options.add_experimental_option("prefs", {"intl.accept_languages": user_language})
